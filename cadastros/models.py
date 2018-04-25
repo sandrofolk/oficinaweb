@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 import datetime
 
 class Pessoa(models.Model):
@@ -29,6 +30,9 @@ class Veiculo(models.Model):
 	chassi = models.CharField(max_length=60, blank=True)
 	marca = models.ForeignKey(Marca, null=True, blank=True, on_delete=models.PROTECT)
 	proprietario = models.ForeignKey(Pessoa, null=True, blank=True, on_delete=models.PROTECT)
+	class Meta:
+		verbose_name = _("Veículo")
+		verbose_name_plural = _("Veículos")
 
 class Produto(models.Model):
 	"""Cadastro de Produtos"""
@@ -51,6 +55,9 @@ class Centro_de_custo(models.Model):
 	descricao = models.CharField(max_length=120, blank=False)
 	def __str__(self):
 		return self.descricao
+	class Meta:
+		verbose_name = _("Centro de Custo")
+		verbose_name_plural = _("Centros de Custo")
 
 class Conta(models.Model):
 	"""Cadastro de Contas"""
@@ -82,6 +89,9 @@ class Titulo(models.Model):
 	valor_pago = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
 	def __str__(self):
 		return self.descricao
+	class Meta:
+		verbose_name = _("Título")
+		verbose_name_plural = _("Títulos")
 
 class Movimentos(models.Model):
 	"""Lançamentos financeiros"""
